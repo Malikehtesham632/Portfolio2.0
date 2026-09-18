@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDown, ArrowUpRight, Code2, Image as ImageIcon, Mail, MapPin } from "lucide-react";
+import { ArrowDown, Code2, Facebook, Github, Image as ImageIcon, Instagram, Linkedin, Mail, MapPin } from "lucide-react";
 import { PortfolioScene } from "../components/PortfolioScene";
+import { ProjectRow } from "../components/project-row";
+import { FiverrIcon, WhatsAppIcon } from "../components/social-icons";
+import { useReveal } from "../hooks/use-reveal";
 
 export const Route = createFileRoute("/")({
   ssr: false,
@@ -26,6 +29,10 @@ const projects = [
 ];
 
 function Index() {
+  const workRef = useReveal<HTMLDivElement>();
+  const aboutRef = useReveal<HTMLDivElement>();
+  const contactRef = useReveal<HTMLDivElement>();
+
   return (
     <main className="overflow-hidden bg-background text-foreground">
       <section className="relative min-h-[92svh] border-b border-border">
@@ -63,24 +70,19 @@ function Index() {
       </section>
 
       <section id="work" className="px-5 py-24 md:px-10 lg:px-16 lg:py-36">
-        <div className="mb-14 flex items-end justify-between border-b border-border pb-6">
+        <div ref={workRef} className="reveal mb-14 flex items-end justify-between border-b border-border pb-6">
           <div><p className="section-label">Selected work</p><h2 className="mt-3 font-display text-5xl md:text-7xl">Systems with purpose.</h2></div>
           <span className="hidden text-sm text-muted-foreground md:block">2024 — 2026</span>
         </div>
         <div>
           {projects.map((project) => (
-            <article key={project.number} className="project-row group grid gap-4 border-b border-border py-8 md:grid-cols-[80px_1fr_1.2fr_auto] md:items-center md:gap-8">
-              <span className="text-xs text-primary">{project.number}</span>
-              <h3 className="font-display text-3xl transition-transform duration-300 group-hover:translate-x-2 md:text-4xl">{project.title}</h3>
-              <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">{project.text}</p>
-              <span className="text-xs uppercase tracking-[0.12em] text-muted-foreground">{project.tags}</span>
-            </article>
+            <ProjectRow key={project.number} project={project} />
           ))}
         </div>
       </section>
 
       <section id="about" className="border-y border-border bg-secondary px-5 py-24 md:px-10 lg:px-16 lg:py-36">
-        <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
+        <div ref={aboutRef} className="reveal grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="section-label">Two disciplines, one standard</p>
             <h2 className="mt-4 font-display text-5xl leading-[0.95] md:text-7xl">Logic in the code.<br /><em className="text-primary">Warmth in the image.</em></h2>
@@ -109,14 +111,18 @@ function Index() {
         <a href="mailto:ehtesham918605@gmail.com" className="contact-link mt-8 block max-w-6xl font-display text-[clamp(3.4rem,9vw,9rem)] leading-[0.86]">
           Let’s make<br /><em className="text-primary">something useful.</em>
         </a>
-        <div className="mt-16 flex flex-col justify-between gap-8 border-t border-border pt-7 md:flex-row md:items-end">
+        <div ref={contactRef} className="reveal mt-16 flex flex-col justify-between gap-8 border-t border-border pt-7 md:flex-row md:items-end">
           <div>
             <p className="max-w-md text-muted-foreground">Open to focused freelance projects in backend development and photo editing.</p>
             <a className="mt-4 inline-flex items-center gap-2 text-sm" href="mailto:ehtesham918605@gmail.com"><Mail size={16} /> ehtesham918605@gmail.com</a>
           </div>
-          <div className="flex gap-6 text-xs uppercase tracking-[0.16em]">
-            <a className="inline-flex items-center gap-1 hover:text-primary" href="https://wa.me/923087629734" target="_blank" rel="noreferrer">WhatsApp <ArrowUpRight size={14} /></a>
-            <a className="inline-flex items-center gap-1 hover:text-primary" href="https://github.com/Malikehtesham632" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a>
+          <div className="flex flex-wrap gap-x-6 gap-y-3 text-xs uppercase tracking-[0.16em]">
+            <a className="inline-flex items-center gap-2 hover:text-primary" href="https://wa.me/923087629734" target="_blank" rel="noreferrer"><WhatsAppIcon size={15} /> WhatsApp</a>
+            <a className="inline-flex items-center gap-2 hover:text-primary" href="#" target="_blank" rel="noreferrer"><FiverrIcon size={15} /> Fiverr</a>
+            <a className="inline-flex items-center gap-2 hover:text-primary" href="https://github.com/Malikehtesham632" target="_blank" rel="noreferrer"><Github size={15} /> GitHub</a>
+            <a className="inline-flex items-center gap-2 hover:text-primary" href="https://www.linkedin.com/in/ehtesham-ul-haq-173b54288/" target="_blank" rel="noreferrer"><Linkedin size={15} /> LinkedIn</a>
+            <a className="inline-flex items-center gap-2 hover:text-primary" href="https://www.instagram.com/ehtesham_ul_haq007/" target="_blank" rel="noreferrer"><Instagram size={15} /> Instagram</a>
+            <a className="inline-flex items-center gap-2 hover:text-primary" href="https://www.facebook.com/Malikehtesham077" target="_blank" rel="noreferrer"><Facebook size={15} /> Facebook</a>
           </div>
         </div>
       </section>

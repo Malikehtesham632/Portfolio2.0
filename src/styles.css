@@ -163,6 +163,17 @@
   &:hover { opacity: 0.78; }
 }
 
+@utility reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms ease, transform 700ms ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 767px) {
   .hero-vignette {
     background:
