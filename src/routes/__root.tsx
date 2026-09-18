@@ -77,7 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Ehtesham Ul Haq" },
+      { title: "Ehtesham Ul Haq's Portfolio" },
       { name: "description", content: "Backend developer and photo editor based in Faisalabad, Pakistan." },
       { name: "author", content: "Ehtesham Ul Haq" },
       { property: "og:title", content: "Ehtesham Ul Haq" },

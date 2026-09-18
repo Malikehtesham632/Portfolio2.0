@@ -9,9 +9,9 @@ export const Route = createFileRoute("/")({
   ssr: false,
   head: () => ({
     meta: [
-      { title: "Ehtesham Ul Haq — Backend Developer & Photo Editor" },
+      { title: "Ehtesham Ul Haq's Portfolio" },
       { name: "description", content: "Portfolio of Ehtesham Ul Haq, a backend developer and photo editor based in Faisalabad, Pakistan." },
-      { property: "og:title", content: "Ehtesham Ul Haq — Backend Developer & Photo Editor" },
+      { property: "og:title", content: "Ehtesham Ul Haq's Portfolio" },
       { property: "og:description", content: "Python, FastAPI, thoughtful systems, and warm, intentional photo editing." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
