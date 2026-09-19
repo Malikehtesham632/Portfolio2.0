@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDown, Code2, Facebook, Github, Image as ImageIcon, Instagram, Linkedin, Mail, MapPin } from "lucide-react";
+import { ArrowDown, Code2, Facebook, Github, Image as ImageIcon, Instagram, Linkedin, Mail, MapPin, Sparkles, Wand2, Workflow } from "lucide-react";
 import { PortfolioScene } from "../components/PortfolioScene";
 import { ProjectRow } from "../components/project-row";
 import { FiverrIcon, WhatsAppIcon } from "../components/social-icons";
@@ -20,6 +20,33 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const stats = [
+  { value: "6+", label: "Projects", sub: "Delivered" },
+  { value: "8+", label: "Tools", sub: "Learned" },
+  { value: "<6", label: "Months", sub: "Practicing" },
+];
+
+const focusAreas = [
+  { icon: Code2, title: "Backend APIs", text: "Python and FastAPI services built to be dependable." },
+  { icon: Workflow, title: "Automation", text: "Workflows that send the right email to the right person." },
+  { icon: ImageIcon, title: "Photo editing", text: "Warm, intentional color work with Python imaging tools." },
+  { icon: Sparkles, title: "Creative coding", text: "Computer vision and 3D experiences, built for practice." },
+];
+
+const experience = {
+  role: "Student — API Programming (Python & FastAPI)",
+  org: "Devigners",
+  date: "2026 — Present",
+  location: "Faisalabad, Pakistan",
+  points: [
+    "Working through a cohort-based course covering Python and FastAPI in depth, under a working instructor's guidance.",
+    "Building independent projects alongside the course to practice databases, validation, and containerization.",
+    "Applying what I learn directly to freelance-ready work, including automated workflows and AI-assisted features.",
+  ],
+};
+
+const skills = ["Python", "FastAPI", "PostgreSQL", "Docker", "REST APIs", "OpenCV", "Pillow / NumPy", "HTML, CSS, JavaScript"];
+
 const projects = [
   { number: "01", title: "Nexus", text: "A full-stack business website with an AI chatbot built to turn static browsing into useful conversation.", tags: "Full stack · AI chatbot" },
   { number: "02", title: "Admission workflow", text: "An admissions site that confirms student submissions instantly and routes categorized alerts to the HR team.", tags: "Automation · Email workflows" },
@@ -29,8 +56,10 @@ const projects = [
 ];
 
 function Index() {
-  const workRef = useReveal<HTMLDivElement>();
   const aboutRef = useReveal<HTMLDivElement>();
+  const experienceRef = useReveal<HTMLDivElement>();
+  const skillsRef = useReveal<HTMLDivElement>();
+  const workRef = useReveal<HTMLDivElement>();
   const contactRef = useReveal<HTMLDivElement>();
 
   return (
@@ -41,8 +70,10 @@ function Index() {
         <header className="relative z-10 flex items-center justify-between px-5 py-6 md:px-10 lg:px-16">
           <a href="#top" className="font-display text-xl text-foreground" aria-label="Ehtesham Ul Haq, home">EUH<span className="text-primary">.</span></a>
           <nav className="hidden items-center gap-8 text-xs uppercase tracking-[0.18em] text-muted-foreground md:flex" aria-label="Main navigation">
-            <a className="transition-colors hover:text-foreground" href="#work">Work</a>
             <a className="transition-colors hover:text-foreground" href="#about">About</a>
+            <a className="transition-colors hover:text-foreground" href="#experience">Experience</a>
+            <a className="transition-colors hover:text-foreground" href="#skills">Skills</a>
+            <a className="transition-colors hover:text-foreground" href="#work">Work</a>
             <a className="transition-colors hover:text-foreground" href="#contact">Contact</a>
           </nav>
           <a href="mailto:ehtesham918605@gmail.com" className="inline-flex items-center gap-2 border-b border-primary pb-1 text-xs uppercase tracking-[0.16em]">
@@ -62,16 +93,93 @@ function Index() {
             <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
               I build thoughtful digital systems, then give them a visual point of view. Python and FastAPI for the logic; careful color and composition for the finish.
             </p>
-            <a href="#work" className="group inline-flex shrink-0 items-center gap-3 text-sm uppercase tracking-[0.16em]">
-              Explore selected work <ArrowDown className="transition-transform group-hover:translate-y-1" size={17} />
-            </a>
+            <div className="flex shrink-0 items-center gap-6 text-xs uppercase tracking-[0.16em]">
+              <a href="mailto:ehtesham918605@gmail.com" className="border-b border-foreground pb-1">Get in touch</a>
+              <a className="inline-flex items-center gap-2 hover:text-primary" href="https://www.linkedin.com/in/ehtesham-ul-haq-173b54288/" target="_blank" rel="noreferrer"><Linkedin size={15} /> LinkedIn</a>
+              <a className="inline-flex items-center gap-2 hover:text-primary" href="https://wa.me/923087629734" target="_blank" rel="noreferrer"><WhatsAppIcon size={15} /> WhatsApp</a>
+            </div>
+          </div>
+          <a href="#about" className="group mt-10 inline-flex w-fit items-center gap-3 text-sm uppercase tracking-[0.16em]">
+            Scroll <ArrowDown className="transition-transform group-hover:translate-y-1" size={17} />
+          </a>
+        </div>
+      </section>
+
+      <section id="about" className="px-5 py-24 md:px-10 lg:px-16 lg:py-36">
+        <div ref={aboutRef} className="reveal">
+          <p className="section-label">01 — About me</p>
+          <h2 className="mt-4 max-w-3xl font-display text-5xl leading-[0.95] md:text-7xl">Logic in the code.<br /><em className="text-primary">Warmth in the image.</em></h2>
+
+          <div className="mt-16 grid gap-8 sm:grid-cols-3">
+            {stats.map((stat) => (
+              <div key={stat.label} className="stat-card">
+                <div className="font-display text-5xl text-primary">{stat.value}</div>
+                <div className="mt-2 text-sm text-muted-foreground">{stat.label} · {stat.sub}</div>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-16 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+            Currently training deeply in API programming while building independent projects around databases, automation, computer vision, and three-dimensional experiences.
+          </p>
+
+          <div className="mt-14 grid gap-4 sm:grid-cols-2">
+            {focusAreas.map((area) => {
+              const Icon = area.icon;
+              return (
+                <div key={area.title} className="focus-card">
+                  <Icon className="mb-6 text-primary" size={22} strokeWidth={1.4} />
+                  <h3 className="font-display text-2xl">{area.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{area.text}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      <section id="work" className="px-5 py-24 md:px-10 lg:px-16 lg:py-36">
+      <section id="experience" className="border-y border-border bg-secondary px-5 py-24 md:px-10 lg:px-16 lg:py-36">
+        <div ref={experienceRef} className="reveal">
+          <p className="section-label">02 — Experience</p>
+          <h2 className="mt-4 max-w-3xl font-display text-5xl leading-[0.95] md:text-7xl">Where I'm training right now.</h2>
+
+          <div className="timeline-item mt-16 max-w-3xl">
+            <div className="flex flex-wrap items-baseline justify-between gap-3">
+              <h3 className="font-display text-3xl md:text-4xl">{experience.role}</h3>
+              <span className="text-sm text-muted-foreground">{experience.date}</span>
+            </div>
+            <p className="mt-1 text-sm uppercase tracking-[0.14em] text-primary">{experience.org} · {experience.location}</p>
+            <ul className="mt-6 space-y-3">
+              {experience.points.map((point) => (
+                <li key={point} className="flex gap-3 text-muted-foreground">
+                  <Wand2 className="mt-1 shrink-0 text-primary" size={15} strokeWidth={1.6} />
+                  <span className="leading-relaxed">{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" className="px-5 py-24 md:px-10 lg:px-16 lg:py-36">
+        <div ref={skillsRef} className="reveal">
+          <p className="section-label">03 — Skills</p>
+          <h2 className="mt-4 max-w-3xl font-display text-5xl leading-[0.95] md:text-7xl">Tools I reach for.</h2>
+        </div>
+        <div className="marquee-row mt-16">
+          <div className="marquee-track">
+            {[...skills, ...skills].map((skill, i) => (
+              <span key={`${skill}-${i}`} className="font-display shrink-0 text-4xl text-muted-foreground md:text-6xl">
+                {skill} <span className="text-primary">·</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="work" className="border-t border-border px-5 py-24 md:px-10 lg:px-16 lg:py-36">
         <div ref={workRef} className="reveal mb-14 flex items-end justify-between border-b border-border pb-6">
-          <div><p className="section-label">Selected work</p><h2 className="mt-3 font-display text-5xl md:text-7xl">Systems with purpose.</h2></div>
+          <div><p className="section-label">04 — Selected work</p><h2 className="mt-3 font-display text-5xl md:text-7xl">Systems with purpose.</h2></div>
           <span className="hidden text-sm text-muted-foreground md:block">2024 — 2026</span>
         </div>
         <div>
@@ -81,35 +189,10 @@ function Index() {
         </div>
       </section>
 
-      <section id="about" className="border-y border-border bg-secondary px-5 py-24 md:px-10 lg:px-16 lg:py-36">
-        <div ref={aboutRef} className="reveal grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <p className="section-label">Two disciplines, one standard</p>
-            <h2 className="mt-4 font-display text-5xl leading-[0.95] md:text-7xl">Logic in the code.<br /><em className="text-primary">Warmth in the image.</em></h2>
-          </div>
-          <div className="grid gap-10 md:grid-cols-2">
-            <div className="border-t border-border pt-6">
-              <Code2 className="mb-12 text-primary" size={24} strokeWidth={1.4} />
-              <h3 className="font-display text-3xl">Backend systems</h3>
-              <p className="mt-4 leading-relaxed text-muted-foreground">Python, FastAPI, PostgreSQL, Docker, custom validation, and APIs that are built to be dependable.</p>
-            </div>
-            <div className="border-t border-border pt-6">
-              <ImageIcon className="mb-12 text-primary" size={24} strokeWidth={1.4} />
-              <h3 className="font-display text-3xl">Photo editing</h3>
-              <p className="mt-4 leading-relaxed text-muted-foreground">Intentional color work using Python imaging tools to bring warmth, depth, and a natural studio-quality finish.</p>
-            </div>
-            <div className="border-t border-border pt-6 md:col-span-2">
-              <p className="text-xl leading-relaxed md:text-2xl">Currently training deeply in API programming while building independent projects around databases, automation, computer vision, and three-dimensional experiences.</p>
-              <p className="mt-8 text-xs uppercase tracking-[0.18em] text-muted-foreground">Python · FastAPI · PostgreSQL · Docker · REST APIs · OpenCV · Pillow · NumPy</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="contact" className="relative px-5 py-24 md:px-10 lg:px-16 lg:py-36">
-        <p className="section-label">Start a conversation</p>
+        <p className="section-label">05 — Start a conversation</p>
         <a href="mailto:ehtesham918605@gmail.com" className="contact-link mt-8 block max-w-6xl font-display text-[clamp(3.4rem,9vw,9rem)] leading-[0.86]">
-          Let’s make<br /><em className="text-primary">something useful.</em>
+          Let's make<br /><em className="text-primary">something useful.</em>
         </a>
         <div ref={contactRef} className="reveal mt-16 flex flex-col justify-between gap-8 border-t border-border pt-7 md:flex-row md:items-end">
           <div>
